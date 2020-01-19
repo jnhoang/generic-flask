@@ -14,6 +14,10 @@ UTILS           =  Utils()
 MAIN_CONTROLLER =  MainController()
 
 
+@main.route('/',  methods=['GET'])
+def main():
+  return (<h1>wow, hello</h1>)
+
 @main.route('/api/lifecheck',  methods=['GET'])
 @main.route('/api/lifecheck/', methods=['GET', 'POST'])
 def lifecheck():
