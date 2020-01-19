@@ -1,0 +1,6 @@
+{
+  "local": {
+    "application_stage"                  :  "local",
+    "application_app_name"               :  "application"
+  }
+}
