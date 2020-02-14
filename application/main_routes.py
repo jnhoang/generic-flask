@@ -15,8 +15,8 @@ MAIN_CONTROLLER =  MainController()
 
 
 @main.route('/',  methods=['GET'])
-def main():
-  return (<h1>wow, hello</h1>)
+def slash():
+  return 'wow hello'
 
 @main.route('/api/lifecheck',  methods=['GET'])
 @main.route('/api/lifecheck/', methods=['GET', 'POST'])
