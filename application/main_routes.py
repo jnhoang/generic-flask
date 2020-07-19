@@ -20,6 +20,7 @@ MAIN_CONTROLLER =  MainController()
 OMDB_CONTROLLER =  OMDBController()
 
 
+@UTILS.require_api_key
 @main.route('/lifecheck',  methods=['GET'])
 @main.route('/lifecheck/', methods=['GET', 'POST'])
 def lifecheck():
@@ -28,6 +29,9 @@ def lifecheck():
   app_name     =  CONFIG.app_name
   logging_json =  { 'app_name': app_name }
   logger.info(logging_json)
+  # if multiple qs for 'search'- params = request.args.getlist('search')
+  # have request as dict = request.args.to_dict()
+
   return Response(
     response =  json.dumps({
       'appName' :  app_name,
@@ -38,13 +42,15 @@ def lifecheck():
   )
 
 
-
 @main.route('/omdb',  methods=['GET'])
 @main.route('/omdb/', methods=['GET'])
 def test():
   try:
-    # if multiple qs for 'search'- params = request.args.getlist('search')
-    # have request as dict = request.args.to_dict()
+    # convert this to a decorator
+    api_key = request.headers.get('x-api-key')
+    if api_key != CONFIG.app_key:
+      return Response(response='sorry', status=401)
+
     accepted_params =  ['search_term']
     params          =  request.args
     search_term     =  request.args.get('search_term')
