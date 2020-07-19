@@ -1,21 +1,23 @@
 import os
 import json
 from application.singleton import Singleton
+from dotenv import load_dotenv
+load_dotenv('.env.local')
 
 @Singleton
 class Config:
-  # flask settings - declare as class attributes
+  app_name =  'application'
+  stage    =  os.getenv('STAGE')
+  app_key  =  os.getenv('APP_KEY')
 
+  # omdb values
+  omdb_base_url =  'http://www.omdbapi.com'
+  omdb_api_key  =  os.getenv('OMDB_API_KEY')
+  omdb_id       =  os.getenv('OMDB_ID')
 
   # env_vars
   def __init__(self):
     print('config class loaded')
-    self.response_headers =  {
-      'Content-Type'                 : 'application/json',
-      'Access-Control-Allow-Origin'  : '*',
-    }
-    self.app_name = 'application'
-    self.stage = 'local'
 
 
   def something(self):
