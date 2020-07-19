@@ -4,9 +4,11 @@ from application.app import create_app
 app = create_app()
 
 if __name__ == '__main__':
+  port = '1111'
+  print(f'running on port: {port}')
   app.run(
     host     =  '0.0.0.0',
-    port     =  '1111',
+    port     =  port,
     debug    =  True,
     threaded =  True,
   )
