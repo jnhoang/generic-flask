@@ -24,9 +24,10 @@ def create_app(config_class=Config):
 
   # REGISTER BLUEPRINTS
   from application.main_routes       import main
+  from application.oauth_routes      import oauth
 
   app.register_blueprint(main)
-  # app.register_blueprint(service_1)
+  app.register_blueprint(oauth)
 
 
 
