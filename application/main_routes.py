@@ -20,7 +20,6 @@ MAIN_CONTROLLER =  MainController()
 OMDB_CONTROLLER =  OMDBController()
 
 
-@UTILS.require_api_key
 @main.route('/lifecheck',  methods=['GET'])
 @main.route('/lifecheck/', methods=['GET', 'POST'])
 def lifecheck():
