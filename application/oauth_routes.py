@@ -9,7 +9,8 @@ logger =  Logger().get_logger()
 oauth  =  Blueprint(
   'oauth',
   __name__,
-  url_prefix='/api/oauth')
+  url_prefix='/api/oauth',
+)
 
 CONFIG          =  Config()
 UTILS           =  Utils()

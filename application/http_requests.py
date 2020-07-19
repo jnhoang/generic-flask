@@ -10,13 +10,13 @@ class Requester:
   def __init__(self):
     self.config =  Config()
 
-  def get_url(self, url, jsonify, headers={'content': 'application/json'}, verify=True):
+  def get_url(self, url, jsonify, headers={'content': 'application/json'}, verify=True, params=None):
     # make GET request
     try:
-      response = requests.get(url, headers=headers, verify=verify)
+      response = requests.get(url, headers=headers, verify=verify, params=params)
       response.raise_for_status()
     except requests.exceptions.HTTPError as e:
-      logger.exception(f'AviaryRequests.get_url Exception: {e}')
+      logger.exception(f'Requester.get_url Exception: {e}')
       raise e
 
     # jsonify response
@@ -39,7 +39,7 @@ class Requester:
       response = requests.post(url=url, auth=auth, headers=headers, json=payload, verify=verify)
       response.raise_for_status()
     except requests.exceptions.HTTPError as e:
-      logger.exception(f'AviaryRequests.post_url exception: {e}')
+      logger.exception(f'Requester.post_url exception: {e}')
       raise e
 
     if jsonify:
