@@ -43,17 +43,15 @@ def lifecheck():
 
 @main.route('/omdb',  methods=['GET'])
 @main.route('/omdb/', methods=['GET'])
-def test():
+def omdb():
   try:
-    # convert this to a decorator
+    # TODO - convert this to a decorator
     api_key = request.headers.get('x-api-key')
     if api_key != CONFIG.app_key:
-      return Response(response='sorry', status=401)
+      return Response(response='sorry, no', status=401)
 
-    accepted_params =  ['search_term']
-    params          =  request.args
-    search_term     =  request.args.get('search_term')
-    result          =  OMDB_CONTROLLER.omdb_request(search_term)
+    query_string =  request.query_string.decode('utf-8').replace(' ', '%20')
+    result       =  OMDB_CONTROLLER.omdb_request(query_string)
     return Response( response=json.dumps(result) )
   except Exception as e:
     print(e)

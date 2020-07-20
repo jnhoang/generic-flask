@@ -17,14 +17,14 @@ class OMDBController:
     self.config        =  Config()
 
 
-  def omdb_request(self, search_term):
+  def omdb_request(self, query_string):
+    self.logger.debug(f'query_string received: {query_string}')
     res = self.http_requests.get_url(
-      url     =  self.config.omdb_base_url,
+      url     =  f'{self.config.omdb_base_url}?{query_string}',
       jsonify =  True,
       params  =  {
         'apikey' :  self.config.omdb_api_key,
         'i'      :  self.config.omdb_id,
-        's'      :  search_term,
-      }
+      },
     )
     return res
