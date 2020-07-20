@@ -8,22 +8,21 @@ from application.config        import Config
 from application.logger        import Logger
 
 
-
-class OMDBController:
+class MarvelController:
   def __init__(self):
     self.http_requests =  Requester()
     self.logger        =  Logger().get_logger()
     self.config        =  Config()
 
 
-  def omdb_request(self, query_string):
-    self.logger.debug(f'query_string received: {query_string}')
+  def marvel_request(self, query_string):
+    self.logger.debug(f'\n\nquery_string received: {query_string}')
+    print(f'{self.config.marvel_base_url}/v1/public/characters?{query_string}')
     res = self.http_requests.get_url(
-      url     =  f'{self.config.omdb_base_url}?{query_string}',
+      url     =  f'{self.config.marvel_base_url}/v1/public/characters?{query_string}',
       jsonify =  True,
       params  =  {
-        'apikey' :  self.config.omdb_api_key,
-        'i'      :  self.config.omdb_id,
+        'apikey' :  self.config.marvel_public_key,
       },
     )
     return res
