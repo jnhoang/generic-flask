@@ -1,0 +1,33 @@
+version: 2.1
+
+jobs:
+  job_1:
+    docker:
+      - image: cimg/base:2022.06
+    steps:
+      - run:
+          name: job_1
+          command: |
+            echo "job 1 done"
+            exit 0
+      - run:
+          name: job_2
+          command: |
+            echo "job 2 done"
+            exit 0
+      - run:
+          name: job_3
+          command: |
+            echo "job 3 done"
+            exit 0
+      - run:
+          name: job_4
+          command: |
+            echo "job 4 done"
+            exit 0
+
+workflows:
+  version: 2
+  workflow_1:
+    jobs:
+      - job_1
