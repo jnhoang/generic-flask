@@ -9,7 +9,7 @@ jobs:
           name: job_1
           command: |
             echo "job 1 done"
-            exit 1
+            exit 0
   job_2:
     docker:
       - image: cimg/base:2022.06
